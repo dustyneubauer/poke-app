@@ -5,7 +5,7 @@ export const loadPokemonData = createAsyncThunk(
     async() => {
         const pokemonData= await fetch(`https://pokeapi.co/api/v2/`);
         const json = await pokemonData.json();
-        console.log(json);
+        console.log(json.results);
         return json.results;
     }
 )

@@ -7,6 +7,7 @@ import Root from "./routes/root";
 import { Provider } from "react-redux";
 import {store} from "./store";
 import { PokemonInfo } from "./routes/pokePage";
+import { RandomPokemon } from "./routes/randomPokemon";
 
 const router = createBrowserRouter([
     {
@@ -17,7 +18,12 @@ const router = createBrowserRouter([
         path:"/",
         element: <PokemonInfo />,
         errorElement: <ErrorPage />
-    },
+    }, 
+    {
+        path:"/random",
+        element: <RandomPokemon/>,
+        errorElement: <ErrorPage />,
+    }
 ]},
 
 ])
