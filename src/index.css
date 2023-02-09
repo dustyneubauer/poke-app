@@ -514,3 +514,17 @@ table button {
   height: 450px;
   width: 300px;
 }
+
+body{
+  background-image: url("./images/nature-pokemon.jpeg");
+  background-size: cover;
+}
+
+.moves {
+  margin:auto;
+  display:block;
+  background: #585858;
+  border: 10px solid #d0d0d0;
+  color: #d0d0d0;
+  font-weight: 700;
+}

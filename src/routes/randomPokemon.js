@@ -39,7 +39,7 @@ if (loading) {
                     <img className="poke-img" src={pokeData.sprites.front_shiny} />
                     <h3>Moves List</h3>
                     </div>
-                    <ol>
+                    <ol className="moves">
                         {pokeData.moves.map((element)=>{
                             return (
                                 <li key={element.move.name}>{element.move.name}</li>

@@ -21,9 +21,6 @@ export default function Root() {
               <li>
                 <Link to={`/my-team`}>View My Team</Link>
               </li>
-              <li>
-                <Link to={`/ash`}>View Ash's Team</Link>
-              </li>
             </ul>
           </nav>
         </div>
