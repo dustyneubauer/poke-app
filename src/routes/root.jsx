@@ -12,17 +12,17 @@ export default function Root() {
           <SearchBar />
           <nav>
             <ul>
-              <li>
-                <Link to={`/my-team`}>View My Team</Link>
-              </li>
-              <li>
-                <Link to={`/ash`}>View Ash's Team</Link>
+            <li>
+                <Link to={`/`}>Home</Link>
               </li>
               <li>
                 <Link to={`/random`}>Catch a Random Pokemon</Link>              
                 </li>
               <li>
-                <Link to={`/`}>Home</Link>
+                <Link to={`/my-team`}>View My Team</Link>
+              </li>
+              <li>
+                <Link to={`/ash`}>View Ash's Team</Link>
               </li>
             </ul>
           </nav>

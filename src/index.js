@@ -8,6 +8,8 @@ import { Provider } from "react-redux";
 import {store} from "./store";
 import { PokemonInfo } from "./routes/pokePage";
 import { RandomPokemon } from "./routes/randomPokemon";
+import { TeamAsh } from "./routes/teamAsh";
+import { MyTeam } from "./routes/myTeam";
 
 const router = createBrowserRouter([
     {
@@ -23,6 +25,16 @@ const router = createBrowserRouter([
         path:"/random",
         element: <RandomPokemon/>,
         errorElement: <ErrorPage />,
+    },
+    {
+        path:"/ash",
+        element: <TeamAsh />,
+        errorElement: <ErrorPage />
+    },
+    {
+        path:"/my-team",
+        element: <MyTeam />,
+        errorElement: <ErrorPage />
     }
 ]},
 

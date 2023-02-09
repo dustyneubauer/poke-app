@@ -12,7 +12,7 @@ export const loadRandomPokemon = createAsyncThunk(
 export const randomPokemonSlice = createSlice({
     name: 'randomPokemon',
     initialState:{
-        pokemon: [],
+        pokemon: null,
         isLoading: false,
         hasError: false,
     },

@@ -380,3 +380,113 @@ i {
   justify-content: center;
   width: 100%;
 }
+
+.myTeam-pokemon-container ul {
+  list-style-type: none;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.random-pokemon-container ol {
+  column-count: 3;
+  text-align: left;
+}
+
+.random-pokemon-container{
+  text-align: center;
+}
+
+.poke-container {
+  margin: 0 0 0 250px;
+  border: 3px solid #910000;
+  background-color: red;
+  margin-top:5% !important;
+  height: 450px;
+  width: 300px;
+}
+
+.poke-img {
+  min-height: 200px;
+    margin:auto;
+    display:block;
+    background: #585858;
+    border: 10px solid #d0d0d0;
+}
+
+.pokedex {
+  border: 3px solid #910000;
+  background-color: red;
+  margin-top:5% !important;
+  height: 400px;
+  width: 300px;
+}
+
+.blueCircle {
+  border-radius: 100px;
+  border: 2px solid #003275;
+  background-color: #0050d5;
+  padding: 10px 20px;
+  margin-top: 50px;
+  display: inline-block;
+  height: 43px;
+  margin-left: 16px;
+
+}
+
+.greenCircle {
+  border-radius: 100px;
+  border: 2px solid #025c00;
+  background-color: #04b700;
+  padding: 11px 10px;
+  margin-top: 50px;
+  display: inline-block;
+ 
+}
+
+.yellowCircle {
+  border-radius: 100px;
+  border: 2px solid #887600;
+  background-color: #f5d500;
+  padding: 11px 10px;
+  margin-top: 50px;
+  display: inline-block;
+ 
+}
+
+.remove-button{
+  text-align: center;
+}
+
+th {
+  text-align: center;
+}
+
+th h1 {
+  background-color: #3992ff;
+  border-radius: 20px;
+  padding: 5px;
+
+}
+
+th button:hover{
+  background-color: #585858;
+  cursor: pointer;
+}
+
+.remove-button {
+ font-size: .5em;
+}
+
+.my-team-page {
+  display: flex,
+}
+
+.my-team-info {
+  flex: 50%;
+}
+
+.my-team-picture {
+  flex: 50%;
+}

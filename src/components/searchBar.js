@@ -1,6 +1,7 @@
 import { setSearchTerm } from "../slices/searchSlice"
 import React, {useState} from "react"
 import { useDispatch } from "react-redux"
+import { loadPokemonData } from '../slices/loadPokemonSlice';
 
 export const SearchBar = () => {
 const [pokemonName, setPokemonName] = useState('')
@@ -10,14 +11,14 @@ const handleChange = (e) => {
     setPokemonName(e.target.value)
 }    
 
-const handleSubmit = () => {
-    dispatch(setSearchTerm(pokemonName))
+const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(loadPokemonData(pokemonName));
 }
 
    return (
    
    <div>
-            <form id="search-form" role="search" onSubmit={handleSubmit}>
               <input
                 id="q"
                 aria-label="Search Players"
@@ -36,10 +37,8 @@ const handleSubmit = () => {
                 className="sr-only"
                 aria-live="polite"
               ></div>
-            </form>
-            <form>
-              <button type="submit">Go</button>
-            </form>
+              <button onClick={handleSubmit}>Go</button>
+            
     </div>
     )
 }
