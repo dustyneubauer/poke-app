@@ -470,17 +470,32 @@ th h1 {
 
 }
 
+td {
+  text-align: right;
+}
+
 th button:hover{
   background-color: #585858;
   cursor: pointer;
+}
+
+table button {
+  margin-top: 25px;
+  border:hsl(224, 98%, 58%) solid 1.5px;
 }
 
 .remove-button {
  font-size: .5em;
 }
 
+.remove-button button:hover{
+  background-color: #585858;
+  cursor: pointer;
+}
+
 .my-team-page {
-  display: flex,
+  display: flex;
+  justify-content: space-around;
 }
 
 .my-team-info {
@@ -489,4 +504,13 @@ th button:hover{
 
 .my-team-picture {
   flex: 50%;
+  min-width: 0;
+}
+
+.team-poke-container {
+  border: 3px solid #910000;
+  background-color: red;
+  margin-top:5% !important;
+  height: 450px;
+  width: 300px;
 }

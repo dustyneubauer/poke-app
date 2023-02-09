@@ -11,7 +11,7 @@ const [imageSrc, setImageSrc] = useState("");
 
 const handleRemoveFromTeam = (e) => {
     dispatch(removeFromTeam(e.target.value))
-    console.log(e.target.value);
+    alert("Pokemon was succcessfully removed from team");
 }
 
 const handleHover = (e) => {
@@ -39,9 +39,7 @@ const handleHover = (e) => {
                    <tbody>
                 <tr>
                     <th><button onMouseOver={handleHover} value={pokemon.image}>{pokemon.name.toUpperCase()}</button></th>
-                </tr>
-                <tr className="remove-button">
-                <td><button className="remove-button" value={pokemon.name} onClick={handleRemoveFromTeam}>Remove</button></td>
+                <td className="remove-button"><button className="remove-button" value={pokemon.name} onClick={handleRemoveFromTeam}>Remove</button></td>
                 </tr>
                 </tbody>
                 </table>
@@ -52,11 +50,11 @@ const handleHover = (e) => {
         </ul>
         </div> 
         <div className="my-team-picture">
-            <div className="poke-container">
+            <div className="team-poke-container">
                 <span className="blueCircle"></span>
                 <span className="greenCircle"></span>
                  <span className="yellowCircle"></span>
-                <img className="poke-img" src={imageSrc} /> 
+                <img className="poke-img" src={imageSrc} />
              </div>  
         </div>
     </div>

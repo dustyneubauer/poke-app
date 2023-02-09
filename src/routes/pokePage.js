@@ -12,6 +12,7 @@ console.log(myTeam);
 
 const handleAddToTeam = () => {
   dispatch(addToTeam(pokeData));
+  alert("Pokemon added to team");
 }
 
   if (!pokeData) {
