@@ -518,6 +518,9 @@ table button {
 body{
   background-image: url("./images/nature-pokemon.jpeg");
   background-size: cover;
+  background-repeat: no-repeat;
+  background-color: #7dad71;
+
 }
 
 .moves {
@@ -527,4 +530,45 @@ body{
   border: 10px solid #d0d0d0;
   color: #d0d0d0;
   font-weight: 700;
+}
+
+.comments-input {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+}
+
+.comment-form {
+  margin-top: 50px;
+  resize: none;
+  height: 100px;
+  width: 500px;
+}
+
+.comments-input button {
+  width: 200px;
+  margin-top: 10px;
+}
+
+.comments-input button:hover {
+  background-color: #585858;
+  cursor: pointer;
+}
+
+.single-comment {
+  background: #585858;
+  border: 10px solid #d0d0d0;
+  margin-top: 5% !important;
+  width: 500px;
+  color: #d0d0d0;
+  font-weight: 700;
+}
+
+.single-comment p {
+  margin-left:5px;
+}
+
+.single-comment button {
+  margin-left: 170px;
+  margin-bottom: 10px;
 }

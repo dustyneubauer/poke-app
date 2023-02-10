@@ -1,6 +1,7 @@
 import { teamData, removeFromTeam } from "../slices/teamSlice";
 import { useSelector, useDispatch } from "react-redux";
 import React, {useState} from "react";
+import { Comments } from "../components/comments";
 
 export const MyTeam = () => {
     const myTeam = useSelector(teamData)
@@ -27,6 +28,7 @@ const handleHover = (e) => {
         )
     }
     return (
+        <>
     <div className="my-team-page">
        <div className="my-team-info">
         <ul>
@@ -58,6 +60,8 @@ const handleHover = (e) => {
              </div>  
         </div>
     </div>
+    <Comments />
+</>
     )
 
 }
