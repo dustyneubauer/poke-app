@@ -2,10 +2,12 @@ import { setSearchTerm } from "../slices/searchSlice"
 import React, {useState} from "react"
 import { useDispatch } from "react-redux"
 import { loadPokemonData } from '../slices/loadPokemonSlice';
+import { useNavigate } from "react-router-dom";
 
 export const SearchBar = () => {
 const [pokemonName, setPokemonName] = useState('')
 const dispatch = useDispatch();
+const navigate = useNavigate();
 
 const handleChange = (e) => {
     setPokemonName(e.target.value)
@@ -14,6 +16,7 @@ const handleChange = (e) => {
 const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(loadPokemonData(pokemonName));
+    navigate("/")
 }
 
    return (

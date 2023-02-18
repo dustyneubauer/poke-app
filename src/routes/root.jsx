@@ -1,5 +1,4 @@
 import { Outlet, Link} from "react-router-dom";
-import { PokemonInfo } from "./pokePage";
 import { SearchBar } from "../components/searchBar";
 
 export default function Root() {

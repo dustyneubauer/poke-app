@@ -12,7 +12,6 @@ const [imageSrc, setImageSrc] = useState("");
 
 const handleRemoveFromTeam = (e) => {
     dispatch(removeFromTeam(e.target.value))
-    alert("Pokemon was succcessfully removed from team");
 }
 
 const handleHover = (e) => {
@@ -31,6 +30,7 @@ const handleHover = (e) => {
         <>
     <div className="my-team-page">
        <div className="my-team-info">
+       <h1>My Team</h1>
         <ul>
         {myTeam.map((pokemon)=>{
             console.log(pokemon.name)
