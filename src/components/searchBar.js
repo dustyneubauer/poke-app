@@ -19,6 +19,18 @@ const handleSubmit = (e) => {
     navigate("/")
 }
 
+const handleKeyUp = (e) => {
+  if (e.key === "Enter"){
+  e.preventDefault();
+  dispatch(loadPokemonData(pokemonName));
+  navigate("/")
+  }
+}
+
+const handleFocus = () => {
+  setPokemonName("")
+}
+
    return (
    
    <div>
@@ -30,6 +42,8 @@ const handleSubmit = (e) => {
                 name="q"
                 onChange={handleChange}
                 value={pokemonName}
+                onFocus={handleFocus}
+                onKeyUp={handleKeyUp}
               />
               <div
                 id="search-spinner"

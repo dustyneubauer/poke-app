@@ -8,13 +8,14 @@ export const MyTeam = () => {
     const dispatch = useDispatch();
 
 const [imageSrc, setImageSrc] = useState("");
-
+const [moves, setMovves] = useState("");
 
 const handleRemoveFromTeam = (e) => {
     dispatch(removeFromTeam(e.target.value))
 }
 
 const handleHover = (e) => {
+    console.log(e.target)
     setImageSrc(e.target.value);
 }
 

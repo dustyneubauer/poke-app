@@ -20,6 +20,9 @@ export default function Root() {
               <li>
                 <Link to={`/my-team`}>View My Team</Link>
               </li>
+              <li>
+                <Link to={`/register`}>Sign Up</Link>
+              </li>
             </ul>
           </nav>
         </div>

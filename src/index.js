@@ -9,6 +9,7 @@ import {store} from "./store";
 import { PokemonInfo } from "./routes/pokePage";
 import { RandomPokemon } from "./routes/randomPokemon";
 import { MyTeam } from "./routes/myTeam";
+import { RegistrationForm } from "./routes/registerUser";
 
 const router = createBrowserRouter([
     {
@@ -28,6 +29,11 @@ const router = createBrowserRouter([
     {
         path:"/my-team",
         element: <MyTeam />,
+        errorElement: <ErrorPage />
+    },
+    {
+        path:"/register",
+        element: <RegistrationForm />,
         errorElement: <ErrorPage />
     }
 ]},
