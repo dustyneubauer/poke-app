@@ -1,7 +1,7 @@
 const express = require('express');
 const apiRouter = express.Router();
-const userRouter = require('./routes/users');
+const registerRouter = require('./routes/register');
 
-apiRouter.use('/users', userRouter);
+apiRouter.use('/register', registerRouter);
 
 module.exports = apiRouter;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom"; 
 import './index.css';
@@ -10,6 +10,7 @@ import { PokemonInfo } from "./routes/pokePage";
 import { RandomPokemon } from "./routes/randomPokemon";
 import { MyTeam } from "./routes/myTeam";
 import { RegistrationForm } from "./routes/registerUser";
+import { Login } from "./components/login";
 
 const router = createBrowserRouter([
     {
@@ -35,6 +36,11 @@ const router = createBrowserRouter([
         path:"/register",
         element: <RegistrationForm />,
         errorElement: <ErrorPage />
+    },
+    {
+        path:"/login",
+        element: <Login />,
+        errorElement: <ErrorPage /> 
     }
 ]},
 

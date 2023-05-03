@@ -6,7 +6,6 @@ export const RegistrationForm = () => {
     const [lastName, setLastName] = useState(null);
     const [username, setUsername] = useState(null);
     const [password,setPassword] = useState(null);
-    const [confirmPassword,setConfirmPassword] = useState(null);
 
     const handleInputChange = (e) => {
         const {id , value} = e.target;
@@ -22,10 +21,6 @@ export const RegistrationForm = () => {
         if(id === "password"){
             setPassword(value);
         }
-        if(id === "confirmPassword"){
-            setConfirmPassword(value);
-        }
-
     }
 
     const handleSubmit  = async (e) => {
@@ -36,7 +31,7 @@ export const RegistrationForm = () => {
             username: username,
             password: password, 
         }))
-            let response = await fetch('http://localhost:8000/api/users', {
+            let response = await fetch('http://localhost:8000/api/register', {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -54,7 +49,6 @@ export const RegistrationForm = () => {
                 setLastName("");
                 setUsername("");
                 setPassword("");
-                setConfirmPassword("");
                 alert("New User Added");
             }else {
                 alert("Username already exists")
@@ -84,10 +78,6 @@ export const RegistrationForm = () => {
               <div className="password">
                   <label className="form__label" for="password">Password </label>
                   <input className="form__input" type="password"  id="password" value={password} onChange = {(e) => handleInputChange(e)} placeholder="Password"/>
-              </div>
-              <div className="confirm-password">
-                  <label className="form__label" for="confirmPassword">Confirm</label>
-                  <input className="form__input" type="password" id="confirmPassword" value={confirmPassword} onChange = {(e) => handleInputChange(e)} placeholder="Confirm Password"/>
               </div>
           </div>
           <div class="footer">

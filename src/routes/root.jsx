@@ -3,8 +3,6 @@ import { SearchBar } from "../components/searchBar";
 
 export default function Root() {
 
-
-  
     return (
       <>
         <div id="sidebar">
@@ -19,6 +17,9 @@ export default function Root() {
                 </li>
               <li>
                 <Link to={`/my-team`}>View My Team</Link>
+              </li>
+              <li>
+                <Link to={`/login`}>Login</Link>
               </li>
               <li>
                 <Link to={`/register`}>Sign Up</Link>
