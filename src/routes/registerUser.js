@@ -51,7 +51,7 @@ export const RegistrationForm = () => {
                 setPassword("");
                 alert("New User Added");
             }else {
-                alert("Username already exists")
+                alert("Internal server error")
             }
         } catch(error) {
             console.log(error);

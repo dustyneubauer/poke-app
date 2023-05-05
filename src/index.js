@@ -10,7 +10,7 @@ import { PokemonInfo } from "./routes/pokePage";
 import { RandomPokemon } from "./routes/randomPokemon";
 import { MyTeam } from "./routes/myTeam";
 import { RegistrationForm } from "./routes/registerUser";
-import { Login } from "./components/login";
+import { UserLogin } from "./routes/login";
 
 const router = createBrowserRouter([
     {
@@ -39,11 +39,15 @@ const router = createBrowserRouter([
     },
     {
         path:"/login",
-        element: <Login />,
+        element: <UserLogin />,
         errorElement: <ErrorPage /> 
     }
-]},
+]}, {
+    path: "/register",
+    element: <RegistrationForm />,
+    errorElement: <ErrorPage />
 
+}
 ])
 
 ReactDOM.createRoot(document.getElementById('root')).render(

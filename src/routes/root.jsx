@@ -1,8 +1,33 @@
+import React, {useState} from "react";
 import { Outlet, Link} from "react-router-dom";
 import { SearchBar } from "../components/searchBar";
+import { UserLogin } from "./login";
 
 export default function Root() {
+  const [token, setToken] = useState();
+  
+  const handleClick = (e) => {
+    setToken(undefined);
+  }
 
+  if(!token) {
+    return (
+      <>
+        <div id="sidebar">
+          <nav>
+            <ul>
+              <li>
+                <Link to={`/login`}>Login</Link>
+              </li>
+             </ul> 
+           </nav>
+          </div>
+        <div id="detail">
+          <UserLogin setToken={setToken} />
+        </div>
+      </>
+    )
+  } else if (token) {
     return (
       <>
         <div id="sidebar">
@@ -19,11 +44,11 @@ export default function Root() {
                 <Link to={`/my-team`}>View My Team</Link>
               </li>
               <li>
-                <Link to={`/login`}>Login</Link>
-              </li>
-              <li>
-                <Link to={`/register`}>Sign Up</Link>
-              </li>
+                 <Link to={`/register`}>Register</Link>
+               </li>
+               <li>
+                  <button id="logout" onClick={handleClick}>Logout</button>
+               </li>
             </ul>
           </nav>
         </div>
@@ -33,3 +58,4 @@ export default function Root() {
       </>
     );
   }
+}
