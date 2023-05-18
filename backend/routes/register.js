@@ -16,7 +16,7 @@ registerRouter.post('/', async (req, res) => {
       } else {
         bcrypt.hash(password, 10, (err,hash) => {
           if (err)
-          res.status(err).json({
+          return res.status(err).json({
             error:"Server error",
           });
           const user = {
@@ -35,7 +35,7 @@ registerRouter.post('/', async (req, res) => {
               });
             } else {
             flag = 1;
-              res.status(201).send('User added');
+              return res.status(201).send('User added');
             }
           });
           if (flag) {
@@ -47,7 +47,7 @@ registerRouter.post('/', async (req, res) => {
       }
     } catch (error) {
       console.log(error);
-      res.status(500).json({
+      return res.status(500).json({
         error: "Database error while registering user!"
       })
     };

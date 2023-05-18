@@ -15,7 +15,7 @@ loginRouter.post('/', async (req, res) => {
         } else {
             bcrypt.compare(password, user[0].password, (err, result) => {
                 if (err) {
-                    res.status(500).json({
+                    return res.status(500).json({
                         error: "Server error",
                     });
                 } else if (result === true) {
@@ -23,17 +23,14 @@ loginRouter.post('/', async (req, res) => {
                         username: username,
                     },process.env.SECRET_KEY
                     );
-                    res.status(200).json({
-                        message: "User signed in",
+                    return res.send({
                         token: token,
                     });
-                    res.send({
-                        token: token
-                    })
+                    sessionStorage.setItem("userToken", token);
                 }
                 else {
                     if (result !== true) {
-                        res.status(400).json({
+                        return res.status(400).json({
                             error: "Enter correct password!",
                         });
                     }
@@ -49,4 +46,4 @@ loginRouter.post('/', async (req, res) => {
 });
 
 
-module.exports = loginRouter
+module.exports = loginRouter;

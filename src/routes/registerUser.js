@@ -80,7 +80,7 @@ export const RegistrationForm = () => {
                   <input className="form__input" type="password"  id="password" value={password} onChange = {(e) => handleInputChange(e)} placeholder="Password"/>
               </div>
           </div>
-          <div class="footer">
+          <div className="footer">
               <button type="submit" class="btn">Register</button>
           </div>
           </form>

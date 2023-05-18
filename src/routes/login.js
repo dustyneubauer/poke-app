@@ -3,22 +3,29 @@ import '../index.css';
 import PropTypes from 'prop-types';
 import { Link } from "react-router-dom";
 
-export const login = async (credentials) => {
-  console.log(credentials);
-  return fetch('http://localhost:8000/api/register', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(credentials)
-  })
+export const login = async ({username, password}) => {
+  var myHeaders = new Headers();
+myHeaders.append("Content-Type", "application/json");
+
+var raw = JSON.stringify({
+  "password": password,
+  "username": username,
+});
+
+var requestOptions = {
+  method: 'POST',
+  headers: myHeaders,
+  body: raw,
+};
+
+return fetch("http://localhost:8000/api/login", requestOptions)
   .then(data => data.json())
 };
 
 export const UserLogin = ({setToken}) => {
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const token = await login({
@@ -26,6 +33,7 @@ export const UserLogin = ({setToken}) => {
       password
     });
     setToken(token);
+    console.log(token);
   }
 
     return(
