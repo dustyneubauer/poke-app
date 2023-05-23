@@ -8,6 +8,7 @@ loginRouter.post('/', async (req, res) => {
     try {
         const data = await pool.query(`SELECT * FROM users WHERE username= $1 RETURNING id;`, [username])
         const user = data.rows;
+
         if (user.length === 0) {
             res.status(400).json({
                 error: "User is not registered, please sign up"
@@ -22,12 +23,14 @@ loginRouter.post('/', async (req, res) => {
                     const token = jwt.sign({
                         username: username,
                         id: user.id,
-                    },process.env.SECRET_KEY
+                    }, process.env.SECRET_KEY
                     );
-                    return res.send({
+
+                    return res.json({
                         token: token,
+                        userName: user[0].username,
+                        userId: user[0].id
                     });
-                    sessionStorage.setItem("userToken", token);
                 }
                 else {
                     if (result !== true) {
