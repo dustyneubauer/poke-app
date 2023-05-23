@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken');
 loginRouter.post('/', async (req, res) => {
     const { username, password } = req.body;
     try {
-        const data = await pool.query(`SELECT * FROM users WHERE username= $1;`, [username])
+        const data = await pool.query(`SELECT * FROM users WHERE username= $1 RETURNING id;`, [username])
         const user = data.rows;
         if (user.length === 0) {
             res.status(400).json({
@@ -21,6 +21,7 @@ loginRouter.post('/', async (req, res) => {
                 } else if (result === true) {
                     const token = jwt.sign({
                         username: username,
+                        id: user.id,
                     },process.env.SECRET_KEY
                     );
                     return res.send({

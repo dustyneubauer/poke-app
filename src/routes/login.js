@@ -1,7 +1,9 @@
 import React, {useState} from "react";
 import '../index.css';
+import { useDispatch, useSelector } from "react-redux";
 import PropTypes from 'prop-types';
 import { Link } from "react-router-dom";
+import { loadUserData } from "../slices/userSlice";
 
 export const login = async ({username, password}) => {
   var myHeaders = new Headers();
@@ -23,6 +25,7 @@ return fetch("http://localhost:8000/api/login", requestOptions)
 };
 
 export const UserLogin = ({setToken}) => {
+  const dispatch = useDispatch();
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
 
@@ -33,6 +36,7 @@ export const UserLogin = ({setToken}) => {
       password
     });
     setToken(token);
+    dispatch(loadUserData());
     console.log(token);
   }
 

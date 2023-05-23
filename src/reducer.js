@@ -4,6 +4,7 @@ import searchReducer from "./slices/searchSlice";
 import randomPokemonReducer from "./slices/randomPokeSlice";
 import teamReducer from "./slices/teamSlice"
 import commentsReducer from "./slices/commentsSlice";
+import userReducer from "./slices/userSlice";
 
 const rootReducer = combineReducers({
     pokemonSearch: loadPokemonReducer,
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
     randomPokemon: randomPokemonReducer,
     team: teamReducer,
     comments: commentsReducer,
+    user: userReducer,
 })
 
 export default rootReducer;

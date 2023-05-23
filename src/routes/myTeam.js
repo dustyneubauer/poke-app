@@ -2,13 +2,15 @@ import { teamData, removeFromTeam } from "../slices/teamSlice";
 import { useSelector, useDispatch } from "react-redux";
 import React, {useState} from "react";
 import { Comments } from "../components/comments";
+import { username} from "../slices/userSlice";
 
 export const MyTeam = () => {
     const myTeam = useSelector(teamData)
     const dispatch = useDispatch();
+    const user = useSelector(username);
 
 const [imageSrc, setImageSrc] = useState("");
-const [moves, setMovves] = useState("");
+const [moves, setMoves] = useState("");
 
 const handleRemoveFromTeam = (e) => {
     dispatch(removeFromTeam(e.target.value))
@@ -31,7 +33,7 @@ const handleHover = (e) => {
         <>
     <div className="my-team-page">
        <div className="my-team-info">
-       <h1>My Team</h1>
+       <h1>{user}'s Team</h1>
         <ul>
         {myTeam.map((pokemon)=>{
             console.log(pokemon.name)
