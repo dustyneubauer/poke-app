@@ -28,6 +28,42 @@ export const saveTeam = createAsyncThunk(
     }
 )
 
+export const loadTeam = createAsyncThunk(
+    'team/load', async (username, password) => {
+        const result = []
+        const team = await fetch("http://localhost:8000/api/team", {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                "username": username,
+            }),
+        })
+        .then(data => data.json())
+
+        await Promise.all(
+            team.map(pokeName => {
+                return async () => {
+                    const pokemon = await fetch(`http://pokemon/api/${pokeName}`, {
+                        method: 'POST',
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({
+                            "username": username,
+                        }),
+                    })
+                    .then(data => data.json())
+
+                    result.push(pokemon)
+                }
+            }
+        ))
+
+        return result
+    }
+)
 
 export const teamSlice = createSlice({
     name: 'team',
@@ -66,6 +102,12 @@ export const teamSlice = createSlice({
                     ...state,
                     error: false,
                     message: 'Saved!'
+                }
+            })
+            .addCase(loadTeam.fulfilled, (state, action) => {
+                return {
+                    ...state,
+                    team: action.payload
                 }
             })
         
