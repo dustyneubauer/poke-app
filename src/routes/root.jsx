@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import { Outlet, Link} from "react-router-dom";
 import { SearchBar } from "../components/searchBar";
 import { UserLogin } from "./login";
@@ -60,4 +60,4 @@ export default function Root() {
         </div>
       </>
     );
-  }
+    }

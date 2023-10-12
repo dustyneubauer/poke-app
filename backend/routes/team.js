@@ -28,10 +28,11 @@ teamRouter.post("/", async (req, res, next) => {
     };
 });
 
-teamRouter.get("/", async (req, res) => {
-    const {userId} = req.body;
+teamRouter.get("/:userId", async (req, res) => {
+    const {userId} = req.params;
     const data = await pool.query(`SELECT pokemon FROM team WHERE user_id = ${userId}`);
     const team = data.rows[0];
+    console.log(team);
     return res.status(201).send(team);
 })
 

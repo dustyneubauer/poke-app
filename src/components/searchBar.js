@@ -1,4 +1,3 @@
-import { setSearchTerm } from "../slices/searchSlice"
 import React, {useState} from "react"
 import { useDispatch } from "react-redux"
 import { loadPokemonData } from '../slices/loadPokemonSlice';

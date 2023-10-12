@@ -1,71 +1,69 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { json } from "react-router-dom";
 
 export const saveTeam = createAsyncThunk(
     'team/saveTeam',
     async (userId, { getState }) => {
         const team = getState().team.team;
         console.log(team);
-       const pokemonTeam = team.map(element => {
+        const pokemonTeam = team.map(element => {
             return element.name;
         })
         console.log(pokemonTeam);
-            var requestOptions = {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    userId: userId,
-                    team: pokemonTeam
-                }),
-            };
+        var requestOptions = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                userId: userId,
+                team: pokemonTeam
+            }),
+        };
 
-            let response = await fetch("http://localhost:8000/api/team", requestOptions)
-            if (response.status === 201) {
-                return { saved: true }
-            }
+        let response = await fetch("http://localhost:8000/api/team", requestOptions)
+        if (response.status === 201) {
+            return { saved: true }
+        }
 
-            return {
-                saved: false
-            }
+        return {
+            saved: false
+        }
     })
 
-    export const loadTeam = createAsyncThunk(
-        'team/load', async (userId) => {
-            let result = []
-            const team = await fetch("http://localhost:8000/api/team", {
-                method: 'GET',
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    "userId": userId
-                }),
-            })
-            .then(data => data.json())
-    
-            await Promise.all(
-                team.map(pokeName => {
-                    return async () => {
-                        const pokemon = await fetch(`http://pokemon/api/${pokeName}`, {
-                            method: 'POST',
-                            headers: {
-                                "Content-Type": "application/json"
-                            },
-                            body: JSON.stringify({
-                                "userId": userId,
-                            }),
-                        })
-                        .then(data => data.json())
-    
-                        result.push(pokemon)
+export const loadTeam = createAsyncThunk(
+    'team/load', async (userId) => {
+        try {
+        const response = await fetch(`http://localhost:8000/api/team/${userId}`)
+        const team = await response.json();
+        console.log(team);
+        if (team) {
+           const promise = team.pokemon.map(async pokeName => {
+                    const lowerCasePokemon = pokeName.toLowerCase();
+                    const pokemonData = await fetch(`https://pokeapi.co/api/v2/pokemon/${lowerCasePokemon}`);
+                    const json = await pokemonData.json();
+                    console.log(json);
+                    const singlePokemon = {
+                        name: json.name,
+                        moves: json.moves,
+                        image: json.sprites.front_shiny,
                     }
-                }
-            ))
-    
+                    console.log(singlePokemon)
+                    return singlePokemon;
+            })
+            const result = await Promise.all(promise)
+            console.log(result);
             return result
         }
-    )
+        else {
+            alert('No team found in database');
+        }
+        }
+        catch(err){
+            console.log(err);
+        }
+    }
+)
 
 
 export const teamSlice = createSlice({
@@ -114,7 +112,7 @@ export const teamSlice = createSlice({
                     team: action.payload,
                 }
             })
-            .addCase(loadTeam.rejected, (state,action) => {
+            .addCase(loadTeam.rejected, (state, action) => {
                 return {
                     ...state,
                     error: true,

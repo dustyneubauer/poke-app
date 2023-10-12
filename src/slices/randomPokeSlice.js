@@ -1,8 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const loadRandomPokemon = createAsyncThunk(
-    'pokeSearch/loadRandomPokemon',
-    async(randomNumber) => {
+    'pokeSearch/loadRandomPokemon', async(randomNumber) => {
         const pokemonData= await fetch(`https://pokeapi.co/api/v2/pokemon/${randomNumber}`);
         const json = await pokemonData.json();
         return json;

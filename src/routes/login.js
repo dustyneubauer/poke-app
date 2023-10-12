@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import '../index.css';
+import "../index.css";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { login } from "../slices/userSlice";
