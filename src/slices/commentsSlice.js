@@ -2,15 +2,9 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 export const saveComment = createAsyncThunk(
     'comments/saveComment',
-    async (userId, { getState }) => {
-        const comment = getState().comments.comments;
-        console.log(comment);
-        const commentOnly = comment.map((indyComment)=> {
-            return indyComment.text;
-        })
-        const commentId = comment.map((indyId)=>{
-            return indyId.id;
-        })
+    async (newComment, { getState }) => {
+        const userId = getState().user.userId;
+        
         var requestOptions = {
             method: 'POST',
             headers: {
@@ -18,19 +12,19 @@ export const saveComment = createAsyncThunk(
             },
             body: JSON.stringify({
                 userId: userId,
-                comment: commentOnly,
-                commentId: commentId
+                comment: newComment.text,
+                commentId: newComment.id
             }),
         };
 
         let response = await fetch("http://localhost:8000/api/comments", requestOptions)
         if (response.status === 201) {
-            return { saved: true }
+            const json = await response.json();
+            console.log(json);
+            return json;
         }
 
-        return {
-            saved: false
-        }
+        
     })
 
 export const loadComment = createAsyncThunk(
@@ -39,7 +33,6 @@ export const loadComment = createAsyncThunk(
         console.log(comments);
         if (comments) {
             const json = await comments.json();
-            console.log(json);
             return json;
         }
         else {
@@ -47,6 +40,7 @@ export const loadComment = createAsyncThunk(
         }
     }
 )
+
 
 export const commentsSlice = createSlice({
     name: "comments",
@@ -80,6 +74,9 @@ export const commentsSlice = createSlice({
         .addCase(loadComment.rejected, (state,action) =>{
             state.comments= [];
             state.hasError= true;
+        })
+        .addCase(saveComment.fulfilled, (state, action) => {
+            state.comments = [...state.comments, action.payload];
         })
     }
 })

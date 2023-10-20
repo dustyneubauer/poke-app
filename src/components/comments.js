@@ -1,6 +1,6 @@
-import { useDispatch, useSelector} from "react-redux";
-import React, {useState} from "react";
-import { addComment, deleteComment, commentData, saveComment, loadComment } from "../slices/commentsSlice";
+import { useDispatch, useSelector, } from "react-redux";
+import React, {useState, useEffect} from "react";
+import { deleteComment, commentData, saveComment, loadComment } from "../slices/commentsSlice";
 import { v4 as uuid} from 'uuid';
 import { userId} from "../slices/userSlice";
 import '../index.css'
@@ -16,9 +16,7 @@ export const Comments = () => {
         text: input
     }
 
-    const handleLoadComment = (e) => {
-        dispatch(loadComment(id));
-    }
+  
 
     const handleChange = (e) => {
         setInput(e.target.value);
@@ -28,10 +26,13 @@ export const Comments = () => {
         dispatch(deleteComment(e.target.value))
     }
 
+    useEffect((e)=> {
+        dispatch(loadComment(id));
+    })
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(addComment(comment));
-        dispatch(saveComment(id))
+        dispatch(saveComment(comment))
         setInput('');
     }
 
@@ -41,7 +42,6 @@ return (
         <textarea onChange={handleChange} value={input} className="comment-form"></textarea>
         <div className="my-team-info">
         <button type="submit" value={comment} onClick={handleSubmit}>Submit Comment</button>
-        <button type="submit" onClick={handleLoadComment}>Load Comments</button>
         </div>
     </div>
     {commentsArr && (

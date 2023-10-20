@@ -5,14 +5,14 @@ commentsRouter.post("/", async (req, res)=>{
     const { userId, comment, commentId } = req.body
     console.log(req.body)
     try {
-        pool.query(`INSERT INTO comment (id, user_id, text) VALUES ('${commentId}', '${userId}', '${comment}')`, (error, results)=>{
+        pool.query(`INSERT INTO comment (id, user_id, text) VALUES ('${commentId}', '${userId}', '${comment}') RETURNING *`, (error, results)=>{
             if (error) {
                 console.error(error);
                 return res.status(500).json({
                     error: "Database error"
                 });
             } else {
-                return res.status(201).send('Comments Saved');
+                return res.status(201).json(results.rows[0]);
             }
         })
     }
